@@ -1,0 +1,63 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Plant API"
+  description: "API for managing plants"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+# New parameters section for create_plant endpoint
+parameters:
+  - name: nom
+    in: body
+    description: The name of the plant
+    required: true
+    type: string
+  - name: planttype
+    in: body
+    description: The type of the plant
+    required: true
+    type: string
+  - name: etat
+    in: body
+    description: The current state of the plant
+    required: true
+    type: string
+  - name: datemaj
+    in: body
+    description: The date when the plant was last updated
+    required: true
+    type: string
+  - name: description
+    in: body
+    description: A short description of the plant
+    required: true
+    type: string
+
+paths:
+  /v1/plants:
+    post:
+      summary: Create a new plant
+      description: Create a new plant with the given attributes
+      parameters:
+        - $ref: "/parameters/nom"
+      responses:
+        201:
+          description: Plant created successfully
+          schema:
+            $ref: "#/definitions/Plant"
+        400:
+          description: Invalid input
+    /v1/plants:
+        get:
+          summary: get plant
+          description: Create a new plant with the given attributes
+          parameters:
+            - $ref: "/parameters/nom"
+          responses:
+            201:
+              description: Plant created successfully
+            400:
+              description: Invalid input
